@@ -1,40 +1,21 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+var prefix = "#";
+var adminprefix = '#'
 
 
-
- client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  console.log('')
-  console.log('')
-  console.log('╔[═════════════════════════════════════════════════════════════════]╗')
-  console.log(`[Start] ${new Date()}`);
-  console.log('╚[═════════════════════════════════════════════════════════════════]╝')
-  console.log('')
-  console.log('╔[════════════════════════════════════]╗');
-  console.log(`Logged in as * [ " ${client.user.username} " ]`);
-  console.log('')
-  console.log('Informations :')
-  console.log('')
-  console.log(`servers! [ " ${client.guilds.size} " ]`);
-  console.log(`Users! [ " ${client.users.size} " ]`);
-  console.log(`channels! [ " ${client.channels.size} " ]`);
-  console.log('╚[════════════════════════════════════]╝')
-  console.log('')
-  console.log('╔[════════════]╗')
-  console.log(' Bot Is Online')
-  console.log('╚[════════════]╝')
-  console.log('')
-  console.log('')
+client.on('ready', () => {
+console.log(`Logged in as ${client.user.tag}!`);
 });
 
-var prefix = "#";
-const developers = ["512625982751113216"]
+
+
+const developers = ["512625982751113216","id"]
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
       
-  if (message.content.startsWith(adminprefix + 'ply')) {
+  if (message.content.startsWith(adminprefix + 'play')) {
     client.user.setGame(argresult);
       message.channel.send(`**✅   ${argresult}**`)
   } else 

@@ -1,43 +1,66 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+var prefix = "#";
 
 
-const devs = ['483743143989084161' , '483743143989084161' , '483743143989084161' , '483743143989084161'];
-const adminprefix = "-";
+ client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  console.log('')
+  console.log('')
+  console.log('╔[═════════════════════════════════════════════════════════════════]╗')
+  console.log(`[Start] ${new Date()}`);
+  console.log('╚[═════════════════════════════════════════════════════════════════]╝')
+  console.log('')
+  console.log('╔[════════════════════════════════════]╗');
+  console.log(`Logged in as * [ " ${client.user.username} " ]`);
+  console.log('')
+  console.log('Informations :')
+  console.log('')
+  console.log(`servers! [ " ${client.guilds.size} " ]`);
+  console.log(`Users! [ " ${client.users.size} " ]`);
+  console.log(`channels! [ " ${client.channels.size} " ]`);
+  console.log('╚[════════════════════════════════════]╝')
+  console.log('')
+  console.log('╔[════════════]╗')
+  console.log(' Bot Is Online')
+  console.log('╚[════════════]╝')
+  console.log('')
+  console.log('')
+});
+
+const developers = ["512625982751113216"]
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!devs.includes(message.author.id)) return;
+      if (!developers.includes(message.author.id)) return;
       
-  if (message.content.startsWith(adminprefix + 'ply')) {
+  if (message.content.startsWith(adminprefix + 'setg')) {
     client.user.setGame(argresult);
-      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+      message.channel.send(`**✅   ${argresult}**`)
   } else 
-  if (message.content.startsWith(adminprefix + 'wt')) {
+     if (message.content === (adminprefix + "leave")) {
+    message.guild.leave();        
+  } else  
+  if (message.content.startsWith(adminprefix + 'setw')) {
   client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+      message.channel.send(`**✅   ${argresult}**`)
   } else 
-  if (message.content.startsWith(adminprefix + 'ls')) {
+  if (message.content.startsWith(adminprefix + 'setl')) {
   client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+      message.channel.send(`**✅   ${argresult}**`)
   } else 
-  if (message.content.startsWith(adminprefix + 'st')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/idk");
-      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+  if (message.content.startsWith(adminprefix + 'sets')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/dream");
+      message.channel.send(`**✅**`)
   }
-  });
-
-  
-  client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag} !`);
- 
+  if (message.content.startsWith(adminprefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`Changing The Name To ..**${argresult}** `)
+} else
+if (message.content.startsWith(adminprefix + 'setava')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`Changing The Avatar To :**${argresult}** `);
+}
 });
- 
-client.on('guildMemberAdd',async member => {
-  if(member.guild.id !== '501419525661786122') return;
-  setTimeout(function(){
-  member.guild.channels.find(r => r.id === '501420247392190465').send('You`re In  **Energy**  Welcome ..');
-},3000);
-});
-  
 
-client.login(process.env.BOT_TOKEN);
+
+client.login(process.env.BOT_TOKEN);// لا تغير فيها شيء
